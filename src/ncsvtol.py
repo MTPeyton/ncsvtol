@@ -17,8 +17,8 @@ with open(filename) as csv_file:
                 if i == 0:
                     out_file = open(col_value.strip() + ".md", "w")
                 elif i == 1:
-                    out_file.write(f"#{topic.strip()}\n")
-                    out_file.write(f"- {headers[i]}:: {col_value}\n")
+                    out_file.write(f"- {topic.strip()}:: true\n")
+                    out_file.write(f"  {headers[i]}:: {col_value}\n")
                 else:
                     out_file.write(f"  {headers[i]}:: {col_value}\n")
             out_file.close()
