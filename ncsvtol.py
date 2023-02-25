@@ -11,11 +11,13 @@ with open(filename) as csv_file:
         if line_count == 0:
             headers = row
         else:
+            out_file = None
             for i, col_value in enumerate(row):
                 if i == 0:
-                    print(f"- {col_value}")
+                    out_file = open(col_value.strip() + ".md")
                 elif i == 1:
-                    print(f"    - {headers[i]}:: {col_value}")
+                    out_file.write(f"- {headers[i]}:: {col_value}")
                 else:
-                    print(f"      {headers[i]}:: {col_value}")
+                    out_file.write(f"  {headers[i]}:: {col_value}")
+            out_file.close()
         line_count += 1
