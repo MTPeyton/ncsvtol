@@ -2,6 +2,7 @@ import sys
 import csv
 
 filename = sys.argv[1]
+topic = sys.argv[2]
 
 with open(filename) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=',')
@@ -14,10 +15,11 @@ with open(filename) as csv_file:
             out_file = None
             for i, col_value in enumerate(row):
                 if i == 0:
-                    out_file = open(col_value.strip() + ".md")
+                    out_file = open(col_value.strip() + ".md", "w")
                 elif i == 1:
-                    out_file.write(f"- {headers[i]}:: {col_value}")
+                    out_file.write(f"#{topic.strip()}\n")
+                    out_file.write(f"- {headers[i]}:: {col_value}\n")
                 else:
-                    out_file.write(f"  {headers[i]}:: {col_value}")
+                    out_file.write(f"  {headers[i]}:: {col_value}\n")
             out_file.close()
         line_count += 1
